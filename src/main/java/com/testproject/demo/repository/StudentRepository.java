@@ -1,5 +1,6 @@
 package com.testproject.demo.repository;
 
+import com.testproject.demo.exception.StudentNotFoundException;
 import com.testproject.demo.models.Student;
 import org.springframework.stereotype.Repository;
 
@@ -7,6 +8,7 @@ import org.springframework.stereotype.Repository;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.function.Supplier;
 
 @Repository
 public class StudentRepository {
@@ -24,15 +26,19 @@ public class StudentRepository {
         };
         System.out.println(students.values());
     }
+
+    private StudentNotFoundException studentNotFoundException;
+
     public Collection<Student> getAllStudents(){
         return students.values();
     }
 
-    public Student getOneStudent(String age){
+    public Student getOneStudent(int age)  {
+
         return students.values().stream()
-                .filter(student ->age.equals(student.getAge()))
+                .filter(student -> age == student.getAge())
                 .findFirst()
-                .orElseThrow(null);
+                .orElse(null);
     }
 
 }

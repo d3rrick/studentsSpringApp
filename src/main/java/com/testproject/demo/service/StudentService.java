@@ -1,5 +1,6 @@
 package com.testproject.demo.service;
 
+import com.testproject.demo.exception.StudentNotFoundException;
 import com.testproject.demo.models.Student;
 import com.testproject.demo.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,7 @@ public class StudentService {
         return studentRepository.getAllStudents();
     }
 
-    public Student getOne(String age){
+    public Student getOne(int age) {
         return  studentRepository.getOneStudent(age);
     }
 }
